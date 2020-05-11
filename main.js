@@ -5,6 +5,14 @@ const port = process.env.PORT || 3000,
 
 app.use(logger('dev'));
 
+app.use(
+  express.urlencoded({
+    extended: false,
+  })
+);
+
+app.use(express.json());
+
 app.use((req, res, next) => {
   /* eslint-disable-next-line no-console */
   console.log(`Loggin' Regest Info:
@@ -24,6 +32,8 @@ app.get('/items/:veggie', (req, res) => {
 });
 
 app.post('/', (req, res) => {
+  /* eslint-disable-next-line no-console */
+  console.log('Req.body: ', req.body, 'Req.querry', req.query);
   res.send('Your contact information has been submitted succesfully');
 });
 
