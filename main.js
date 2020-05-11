@@ -5,15 +5,21 @@ const port = process.env.PORT || 3000,
 
 app.use(logger('dev'));
 
+app.use((req, res, next) => {
+  /* eslint-disable-next-line no-console */
+  console.log(`Loggin' Regest Info:
+  method: ${req.method}, url: ${req.url}`
+  // ${(req.params || req.params !== 'undefined') ? `params: ${req.params}` : null}
+  );
+  next();
+});
+
 app.get('/', (req, res) => {
-  console.log('Req params, body, url & querry',
-    req.params, req.body, req.url, req.querry);
   res.send('Hello Wierd World');
 });
 
 app.get('/items/:veggie', (req, res) => {
   let veggie = (req.params.veggie);
-  console.log('req.params', req.params, 'veggie', veggie);
   res.send(`<h1>This is the page for the ${veggie}</h1>`);
 });
 
