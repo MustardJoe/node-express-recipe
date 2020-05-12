@@ -1,22 +1,20 @@
 //  Imports and Server-level Variables
-const port = process.env.PORT || 3000,
+const 
   express = require('express'),
   app = express(),
+  port = process.env.PORT || 3000,
   logger = require('morgan'),
   homeController = require('./controllers/homeController'),
   jonnyLogger = require('./middleware/jonnyLogger');
 
 //  Instantiating Middleware
 app.use(logger('dev'));
-
 app.use(
   express.urlencoded({
     extended: false,
   })
 );
-
 app.use(express.json());
-
 app.use(jonnyLogger);
 
 // Routing
