@@ -28,6 +28,8 @@ app.get('/items/:veggie', homeController.veggieParser);
 
 app.post('/', homeController.postContactInfo);
 
+app.post('/sign_up', homeController.postContactInfo);
+
 app.listen(port, () => {
   /* eslint-disable-next-line no-console */
   console.log(`--------------------------------------------------------------------
