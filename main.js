@@ -22,6 +22,8 @@ app.get('/', (req, res) => {
   res.send('Hello Wierd World');
 });
 
+app.get('/message.html', homeController.message);
+
 app.get('/items/:veggie', homeController.veggieParser);
 
 app.post('/', homeController.postContactInfo);
