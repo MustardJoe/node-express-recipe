@@ -7,6 +7,12 @@ const
   homeController = require('./controllers/homeController'),
   jonnyLogger = require('./middleware/jonnyLogger');
 
+app.set('view engine', 'ejs');
+// app.set("view engine", "ejs");
+
+/* eslint-disable-next-line no-console */
+console.log('app.view engine:', app.get('view engine'));
+
 //  Instantiating Middleware
 app.use(logger('dev'));
 app.use(
@@ -18,6 +24,8 @@ app.use(express.json());
 app.use(jonnyLogger);
 
 // Routing
+app.get('./name', homeController.getName);
+
 app.get('/', (req, res) => {
   res.send('Hello Wierd World');
 });
@@ -25,6 +33,7 @@ app.get('/', (req, res) => {
 app.get('/message.html', homeController.message);
 
 app.get('/items/:veggie', homeController.veggieParser);
+
 
 app.post('/', homeController.postContactInfo);
 

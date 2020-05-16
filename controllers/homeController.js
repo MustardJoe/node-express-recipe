@@ -1,3 +1,8 @@
+let ejs = require('ejs'),
+  people = ['geddy', 'neil', 'alex'],
+  html = ejs.render('<%= people.join(", "); %>', { people: people });
+
+
 exports.veggieParser = (req, res) => {
   let veggie = (req.params.veggie);
   res.send(`<h1>This is the page for the ${veggie}</h1>`);
@@ -18,6 +23,10 @@ exports.message = (req, res) => {
   let ourMessage = messages[rNumb];
 
   res.send(`<h1>${ourMessage}</h1>`);
+};
+
+exports.getName = (req, res) => {
+  res.send(html);
 };
 
 exports.postContactInfo = (req, res) => {
