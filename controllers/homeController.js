@@ -1,6 +1,5 @@
-let ejs = require('ejs'),
-  people = ['geddy', 'neil', 'alex'],
-  html = ejs.render('<%= people.join(", "); %>', { people: people });
+const ejs = require('ejs'),
+  name = require('../views/name.ejs');
 
 
 exports.veggieParser = (req, res) => {
@@ -26,7 +25,8 @@ exports.message = (req, res) => {
 };
 
 exports.getName = (req, res) => {
-  res.send(html);
+  console.log('trying to get name...', res);
+  res.send(name);
 };
 
 exports.postContactInfo = (req, res) => {
