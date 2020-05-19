@@ -9,6 +9,10 @@ app.get('/', (req, res) => {
   res.render('name');
 });
 
+app.get('/diff', (req, res) => {
+  res.render('diff');
+});
+
 app.listen(port, () => {
   /* eslint-disable-next-line no-console */
   console.log(`--------------------------------------------------------------------
