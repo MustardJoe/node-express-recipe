@@ -5,6 +5,12 @@ const
 
 app.set('view engine', 'ejs');
 
+app.use((req, res, next) => {
+  /* eslint-disable-next-line no-console */
+  console.log('req stuff', req.method, req.url);
+  next();
+});
+
 app.get('/', (req, res) => {
   res.render('name');
 });
