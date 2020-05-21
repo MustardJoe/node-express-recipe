@@ -1,36 +1,35 @@
-const 
-  express = require('express'),
-  app = express();
-const path = require('path');
-app.set('views', path.join(__dirname, 'views'));
+'use strict';
 
+const express = require('express'),
+  app = express(),
+  homeController = require('./controllers/homeController'),
+  layouts = require('express-ejs-layouts');
 
+app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
-const port = process.env.PORT || 3000;
-const homeController = require('./controllers/homeController');  ;
 
-console.log('view engine', app.get('view engine'));
+app.use(layouts);
+app.use(
+  express.urlencoded({
+    extended: false
+  })
+);
+app.use(express.json());
 
 app.use((req, res, next) => {
-  /* eslint-disable-next-line no-console */
-  console.log('req stuff', req.method, req.url);
+  console.log(`request made to: ${req.url}`);
   next();
 });
 
 app.get('/name/:name', homeController.respondWithName);
+app.get('/items/:vegetable', homeController.sendReqParam);
 
-app.get('/', (req, res) => {
-  res.render('name');
+app.post('/', (req, res) => {
+  console.log(req.body);
+  console.log(req.query);
+  res.send('POST Successful!');
 });
 
-app.get('/diff', (req, res) => {
-  res.render('diff');
-});
-
-app.listen(port, () => {
-  /* eslint-disable-next-line no-console */
-  console.log(`--------------------------------------------------------------------
-  Your Node and Express server has started on port ${port}. 
-  Welcome to SkyNet
---------------------------------------------------------------------`);
+app.listen(app.get('port'), () => {
+  console.log(`Server running at http://localhost:${app.get('port')}`);
 });
