@@ -7,5 +7,5 @@ exports.sendReqParam = (req, res) => {
 
 exports.respondWithName = (req, res) => {
   let ourName = req.params.name;
-  res.render('name', { name: ourName });
+  res.render('index', { name: ourName });
 };
