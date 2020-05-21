@@ -4,6 +4,7 @@ const express = require('express'),
   app = express(),
   homeController = require('./controllers/homeController'),
   layouts = require('express-ejs-layouts');
+const errorController = require('./controllers/errorController');
 
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
@@ -14,6 +15,7 @@ app.use(
     extended: false
   })
 );
+app.use(errorController.logError);
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -21,7 +23,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/name/:name', homeController.respondWithName);
+app.get('/name', homeController.respondWithName);
 app.get('/items/:vegetable', homeController.sendReqParam);
 
 app.post('/', (req, res) => {
@@ -33,3 +35,6 @@ app.post('/', (req, res) => {
 app.listen(app.get('port'), () => {
   console.log(`Server running at http://localhost:${app.get('port')}`);
 });
+
+app.use(errorController.respondNoResourceFound);
+app.use(errorController.respondInternalError);
