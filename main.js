@@ -19,6 +19,7 @@ app.use(errorController.logError);
 app.use(express.json());
 
 app.use((req, res, next) => {
+  /* eslint-disable-next-line no-console */
   console.log(`request made to: ${req.url}`);
   next();
 });
@@ -27,12 +28,13 @@ app.get('/name', homeController.respondWithName);
 app.get('/items/:vegetable', homeController.sendReqParam);
 
 app.post('/', (req, res) => {
-  console.log(req.body);
-  console.log(req.query);
+  /* eslint-disable-next-line no-console */
+  console.log('req.body:', req.body, 'req.query', req.query);
   res.send('POST Successful!');
 });
 
 app.listen(app.get('port'), () => {
+  /* eslint-disable-next-line no-console */
   console.log(`Server running at http://localhost:${app.get('port')}`);
 });
 

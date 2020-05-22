@@ -21,5 +21,5 @@ exports.respondInternalError = (req, res) => {
   res.status(errorCode);
   res.send(`${errorCode}:
   Something bad happened... probably i wrote a bad server code.... sad d'oh...`);
-}
+};
 

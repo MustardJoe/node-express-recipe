@@ -7,6 +7,7 @@ exports.sendReqParam = (req, res) => {
 
 exports.respondWithName = (req, res) => {
   let ourName = req.params.name;
+  /* eslint-disable-next-line no-console */
   console.log('ourName in req.params', ourName);
   res.render('index');
 };
