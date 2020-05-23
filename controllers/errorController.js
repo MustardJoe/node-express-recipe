@@ -12,8 +12,12 @@ exports.logError = (error, req, res, next) => {
 exports.respondNoResourceFound = (req, res) => {
   let errorCode = httpStatus.NOT_FOUND;
   res.status(errorCode);
-  res.send(`${errorCode}:
-  the page you requested (${req.url}) does not exist. Please check your url or give up all hope.`);
+  // res.send(`${errorCode}:
+  // the page you requested (${req.url}) does not exist. Please check your url or give up all hope.`);
+  res.sendFile(`./public/${errorCode}.html`, {
+    root: './'
+  });
+
 };
 
 exports.respondInternalError = (req, res) => {
